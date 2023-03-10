@@ -1,5 +1,5 @@
 
-import * as Vimeo from "@vimeo/player";
+import Player from '@vimeo/player';
 
 const options = {
         id: 59777392,
@@ -7,7 +7,7 @@ const options = {
         loop: true
     };
 
-    const player = new Vimeo.Player('made-in-ny', options);
+    const player = new Player('made-in-ny', options);
 
     player.setVolume(0);
 
