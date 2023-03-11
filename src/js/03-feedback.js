@@ -1,7 +1,7 @@
 import throttle from "lodash.throttle";
-
-const STORAGE_KEY_EMAIL = 'email';
-const STORAGE_KEY_TEXTAREA = 'message';
+ 
+const STORAGE_KEY = "feedback-form-state";
+const data = {};
 
 const refs = {
     form: document.querySelector('.feedback-form'),
@@ -12,7 +12,7 @@ const refs = {
 reloadingPage();
 
 refs.form.addEventListener('submit', throttle(onSubmit, 500));
-refs.textarea.addEventListener('input', throttle(onInput, 500));
+refs.textarea.addEventListener('input', throttle(onMessage, 500));
 refs.email.addEventListener('input', throttle(onEmail, 500));
 
 
@@ -21,36 +21,45 @@ function onSubmit (e) {
 
     const formElements = e.currentTarget.elements;
     const email = formElements.email.value;
-    const textarea = formElements.message.value;
+    const message = formElements.message.value;
 
     const formData = {
         email,
-        textarea
+        message
     };
     
     console.log(formData);
 
     e.currentTarget.reset();
     
-    localStorage.removeItem(STORAGE_KEY_TEXTAREA);
-    localStorage.removeItem(STORAGE_KEY_EMAIL);
+    localStorage.removeItem(STORAGE_KEY);
+    
 }
 
-function onInput (e) {
-    localStorage.setItem(STORAGE_KEY_TEXTAREA, e.target.value);
+function onMessage(e) {
+    data.message = e.target.value;
+    console.log(data);
+        
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function onEmail(e) {
-    localStorage.setItem(STORAGE_KEY_EMAIL, e.target.value);
+    data.email = e.target.value
+    console.log(data);
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-function reloadingPage () {
-    const savedMessage = localStorage.getItem(STORAGE_KEY_TEXTAREA);
-    const savedEmail = localStorage.getItem(STORAGE_KEY_EMAIL);
+function reloadingPage() {
+    const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    console.log(savedForm);
 
-    if (savedMessage) {
-        refs.textarea.value = savedMessage;
-        refs.email.value = savedEmail;
+    if (savedForm.message) {
+        refs.textarea.value = savedForm.message;
+    }
+
+    if (savedForm.email) {
+       refs.email.value = savedForm.email;
     }
 }
 
