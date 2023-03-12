@@ -39,23 +39,17 @@ function onSubmit (e) {
 
 function onMessage(e) {
     data.message = e.target.value;
-    console.log(data.message);
-        
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function onEmail(e) {
     data.email = e.target.value;
-    console.log(data.email);
-
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function reloadingPage() {
     const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
-
-    console.log(savedForm);
-
+    
     if (savedForm.message) {
         data.message = savedForm.message;
         refs.textarea.value = savedForm.message;
@@ -66,6 +60,8 @@ function reloadingPage() {
         refs.email.value = savedForm.email;
     }
 }
+
+
 
 
 
