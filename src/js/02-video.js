@@ -17,7 +17,7 @@ const onPlay = function (data) {
     localStorage.setItem('videoplayer-current-time', data.seconds);
 };
 
-player.on('timeupdate', throttle(onPlay, 1000));
+player.on('timeupdate', throttle(onPlay, 500));
 
 const seconds = localStorage.getItem('videoplayer-current-time');
      
