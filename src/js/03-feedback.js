@@ -38,32 +38,27 @@ function onSubmit (e) {
 
 function onMessage(e) {
     data.message = e.target.value;
-    console.log(data);
         
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function onEmail(e) {
     data.email = e.target.value
-    console.log(data);
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function reloadingPage() {
     const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    console.log(savedForm);
-    console.log(savedForm.message);
+    
+    if (savedForm.message) {
+        refs.textarea.value = savedForm.message;
+    }
+
+    if (savedForm.email) {
+       refs.email.value = savedForm.email;
+    }
 }
-
-//     if (savedForm.message) {
-//         refs.textarea.value = savedForm.message;
-//     }
-
-//     if (savedForm.email) {
-//        refs.email.value = savedForm.email;
-//     }
-// }
 
 
 
