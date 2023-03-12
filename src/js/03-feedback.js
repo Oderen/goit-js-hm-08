@@ -50,15 +50,19 @@ function onEmail(e) {
 
 function reloadingPage() {
     const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    
+    console.log('savedMessage: ', savedForm.message);
+    console.log('savedEmail: ', savedForm.email);
+  
     if (savedForm.message) {
         refs.textarea.value = savedForm.message;
-    }
-
+    } 
+  
     if (savedForm.email) {
        refs.email.value = savedForm.email;
     }
 }
+
+
 
 
 
