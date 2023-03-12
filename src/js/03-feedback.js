@@ -53,7 +53,7 @@ function onEmail(e) {
 function reloadingPage() {
     const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
     console.log(savedForm);
-//     console.log(savedForm.message);
+    console.log(savedForm.message);
 }
 
 //     if (savedForm.message) {
