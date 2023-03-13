@@ -49,7 +49,6 @@ function onEmail(e) {
 
 function reloadingPage() {
     const savedForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
-
     if (savedForm) {
 
     if (savedForm.message) {
@@ -63,8 +62,6 @@ function reloadingPage() {
     }
     }
 }
-
-
 
 
 
